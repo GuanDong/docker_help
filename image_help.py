@@ -4,6 +4,7 @@ import requests
 import bs4
 import html2text
 import mdv
+import re
 import os
 import sys
 
@@ -25,7 +26,8 @@ def echoDescMarkdown(image):
     h = html2text.HTML2Text()
     h.ignore_links = True
     md = h.handle(content)
-    print mdv.main(md, theme='584.2214')
+    colorText = mdv.main(md, theme='584.2214')
+    print re.sub(r'<br\s*/?>', '', colorText)
 
 args = sys.argv[1:]
 
